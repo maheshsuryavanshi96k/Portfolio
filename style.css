@@ -1,0 +1,556 @@
+/* style.css - Mahesh portfolio
+   Dark default theme, smooth premium animations (.65s)
+   Replaces previous styles - paste entire file over style.css
+*/
+
+:root {
+    --bg: #07101a;
+    --panel: rgba(255, 255, 255, 0.02);
+    --card: rgba(255, 255, 255, 0.03);
+    --accent: #06b6d4;
+    --accent-2: #00e6a8;
+    --muted: #93a3b2;
+    --text: #e6eef6;
+    --glass: rgba(255, 255, 255, 0.03);
+    --radius: 12px;
+    --gutter: 20px;
+    --ease: cubic-bezier(.16, .84, .44, 1);
+}
+
+ :root[data-theme="light"] {
+    --bg: #f6fafb;
+    --panel: rgba(0, 0, 0, 0.03);
+    --card: rgba(0, 0, 0, 0.03);
+    --accent: #0ea5a4;
+    --accent-2: #06b6d4;
+    --muted: #475569;
+    --text: #07101a;
+}
+
+
+/* Reset */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background .65s var(--ease), color .65s var(--ease);
+    line-height: 1.45;
+}
+
+
+/* Full-bleed regions, centered content */
+
+.header-wrap,
+.hero-wrap,
+.page-wrap {
+    width: 100%
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--gutter)
+}
+
+
+/* Header */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 120;
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.06));
+}
+
+.site-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0
+}
+
+
+/* Brand */
+
+.brand {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    cursor: pointer
+}
+
+.logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    background: linear-gradient(135deg, #053f44, #07b39a);
+    color: #eafef6;
+    font-size: 18px;
+    box-shadow: 0 12px 40px rgba(6, 182, 212, 0.06);
+    transition: transform .28s var(--ease);
+}
+
+.logo:hover {
+    transform: translateY(-4px) scale(1.02)
+}
+
+.brand .name {
+    font-weight: 700
+}
+
+.brand .tag {
+    font-size: 12px;
+    color: var(--muted)
+}
+
+
+/* Nav */
+
+.nav {
+    display: flex;
+    gap: 8px;
+    align-items: center
+}
+
+.nav-link {
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all .65s var(--ease);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--accent);
+    background: var(--panel);
+    transform: translateY(-3px)
+}
+
+
+/* Theme toggle - uses different icons (shield / bolt) */
+
+.theme-toggle {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .36s var(--ease);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-3px)
+}
+
+
+/* Hamburger (mobile) */
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: var(--text);
+    border-radius: 3px;
+    transition: all .28s var(--ease)
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg)
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg)
+}
+
+
+/* Mobile nav sliding panel */
+
+@media(max-width:880px) {
+    .nav {
+        position: fixed;
+        top: 76px;
+        right: 0;
+        height: calc(100vh - 76px);
+        width: 0;
+        overflow: hidden;
+        flex-direction: column;
+        padding: 12px;
+        gap: 10px;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.5));
+        border-left: 1px solid rgba(255, 255, 255, 0.02);
+        transition: width .32s var(--ease), padding .32s var(--ease);
+        z-index: 140;
+    }
+    .nav.open {
+        width: 240px;
+        padding: 20px;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.45)
+    }
+    .hamburger {
+        display: flex
+    }
+}
+
+
+/* Hero */
+
+.hero {
+    padding: 36px 0
+}
+
+.hero-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    flex-wrap: wrap
+}
+
+.hero-left {
+    flex: 1;
+    min-width: 260px
+}
+
+.hero-right {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    justify-content: flex-end
+}
+
+
+/* Circular image */
+
+.hero-img,
+.profile-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent);
+    box-shadow: 0 18px 60px rgba(6, 182, 212, 0.06)
+}
+
+
+/* Cards */
+
+.card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid var(--glass);
+    transition: transform .65s var(--ease), box-shadow .65s var(--ease)
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    border-color: rgba(6, 182, 212, 0.06)
+}
+
+
+/* Buttons */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
+    transition: transform .65s var(--ease), box-shadow .65s var(--ease)
+}
+
+.btn:active {
+    transform: scale(.985)
+}
+
+.btn.primary {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    color: #022;
+    box-shadow: 0 12px 40px rgba(6, 182, 212, 0.08)
+}
+
+.btn.ghost {
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--muted);
+    background: transparent
+}
+
+.btn.icon-only {
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+    padding: 8px
+}
+
+
+/* Button hover glow */
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 50px rgba(6, 182, 212, 0.08)
+}
+
+
+/* SVG icon default inside btn */
+
+.btn svg {
+    width: 18px;
+    height: 18px;
+    transition: transform .65s var(--ease), filter .65s var(--ease);
+    display: block
+}
+
+
+/* Animated icon behaviors (trigger on whole button hover) */
+
+.icon-download {
+    transition: transform .65s var(--ease)
+}
+
+.btn:hover .icon-download {
+    transform: translateY(-6px) translateX(8px) rotate(-8deg);
+    filter: drop-shadow(0 6px 16px rgba(6, 182, 212, 0.22))
+}
+
+.icon-pulse {
+    transition: transform .65s var(--ease);
+    animation: none
+}
+
+.btn:hover .icon-pulse {
+    transform: scale(1.06);
+    filter: drop-shadow(0 8px 22px rgba(6, 182, 212, 0.22))
+}
+
+.icon-phone {
+    transition: transform .65s var(--ease)
+}
+
+.btn:hover .icon-phone {
+    transform: rotate(10deg) translateY(-4px)
+}
+
+.icon-mail {
+    transition: transform .65s var(--ease)
+}
+
+.btn:hover .icon-mail {
+    transform: translateY(-6px) rotate(-6deg)
+}
+
+
+/* For contact cards - animate phone/email when hovering card or link */
+
+.contact-card .icon-phone,
+.contact-card .icon-mail {
+    transition: transform .65s var(--ease)
+}
+
+.contact-card:hover .icon-phone {
+    transform: rotate(10deg) translateY(-4px)
+}
+
+.contact-card:hover .icon-mail {
+    transform: translateY(-6px) rotate(-6deg)
+}
+
+
+/* Skills grid */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-top: 18px
+}
+
+.skill-card {
+    text-align: center;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    background: var(--panel);
+    transition: transform .65s var(--ease)
+}
+
+.skill-card img {
+    width: 46px;
+    height: 46px;
+    margin-bottom: 8px
+}
+
+.skill-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(6, 182, 212, 0.06)
+}
+
+
+/* Projects grid */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 18px;
+    margin-top: 18px
+}
+
+.project-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform .65s var(--ease)
+}
+
+.project-card:hover img {
+    transform: scale(1.04)
+}
+
+
+/* Contact form */
+
+.form input,
+.form textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: transparent;
+    color: var(--text);
+    transition: box-shadow .65s var(--ease), border-color .65s var(--ease)
+}
+
+.form textarea {
+    min-height: 120px;
+    resize: vertical
+}
+
+
+/* Social icon row */
+
+.social-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 12px
+}
+
+.social-row a {
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    background: var(--panel);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: all .65s var(--ease)
+}
+
+.social-row a:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(6, 182, 212, 0.08)
+}
+
+
+/* Ease-in reveal (smooth premium) */
+
+.ease-in {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .65s var(--ease), transform .65s var(--ease)
+}
+
+.ease-in.visible {
+    opacity: 1;
+    transform: translateY(0)
+}
+
+.delay-1 {
+    transition-delay: .08s
+}
+
+.delay-2 {
+    transition-delay: .16s
+}
+
+.delay-3 {
+    transition-delay: .28s
+}
+
+.delay-4 {
+    transition-delay: .38s
+}
+
+
+/* Responsive tweaks */
+
+@media(max-width:880px) {
+    .hero-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px
+    }
+    .hero-right {
+        justify-content: center
+    }
+    .hero-img,
+    .profile-img {
+        width: 120px;
+        height: 120px
+    }
+    .container {
+        padding: 0 16px
+    }
+    .brand .name {
+        display: none
+    }
+    .brand .tag {
+        display: none
+    }
+}
